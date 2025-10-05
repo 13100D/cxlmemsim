@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/calloc.dir/link.d CMakeFiles/calloc.dir/calloc.c.o -o calloc

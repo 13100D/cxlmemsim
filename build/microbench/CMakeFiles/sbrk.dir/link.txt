@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/sbrk.dir/link.d CMakeFiles/sbrk.dir/sbrk.c.o -o sbrk

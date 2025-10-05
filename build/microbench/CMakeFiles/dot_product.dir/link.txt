@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/dot_product.dir/link.d CMakeFiles/dot_product.dir/dot_product.c.o -o dot_product

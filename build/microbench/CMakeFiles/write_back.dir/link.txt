@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/write_back.dir/link.d CMakeFiles/write_back.dir/write_back.c.o -o write_back

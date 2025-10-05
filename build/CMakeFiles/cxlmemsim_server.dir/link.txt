@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -fPIC -pthread  -latomic -Wl,--dependency-file=CMakeFiles/cxlmemsim_server.dir/link.d CMakeFiles/cxlmemsim_server.dir/src/main_server.cc.o CMakeFiles/cxlmemsim_server.dir/src/shared_memory_manager.cc.o CMakeFiles/cxlmemsim_server.dir/src/shm_communication.cpp.o -o cxlmemsim_server  libcxlmemsim.a /usr/lib/libspdlog.so.1.15.3 -lrt /usr/lib/libfmt.so.11.2.0

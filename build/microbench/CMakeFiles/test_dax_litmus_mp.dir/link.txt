@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_dax_litmus_mp.dir/link.d CMakeFiles/test_dax_litmus_mp.dir/test_dax_litmus_mp.c.o -o test_dax_litmus_mp

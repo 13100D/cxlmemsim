@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcxlmemsim.a CMakeFiles/cxlmemsim.dir/src/monitor.cpp.o CMakeFiles/cxlmemsim.dir/src/pebs.cpp.o CMakeFiles/cxlmemsim.dir/src/lbr.cpp.o CMakeFiles/cxlmemsim.dir/src/rob.cpp.o CMakeFiles/cxlmemsim.dir/src/incore.cpp.o CMakeFiles/cxlmemsim.dir/src/uncore.cpp.o CMakeFiles/cxlmemsim.dir/src/perf.cpp.o CMakeFiles/cxlmemsim.dir/src/helper.cpp.o CMakeFiles/cxlmemsim.dir/src/policy.cpp.o CMakeFiles/cxlmemsim.dir/src/cxlendpoint.cpp.o CMakeFiles/cxlmemsim.dir/src/cxlcontroller.cpp.o
+/usr/bin/ranlib libcxlmemsim.a

@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ld_simple.dir/link.d CMakeFiles/ld_simple.dir/ld_simple.cpp.o -o ld_simple

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -fPIC -pthread  -latomic -Wl,--dependency-file=CMakeFiles/cxlmemsim_server_rdma.dir/link.d CMakeFiles/cxlmemsim_server_rdma.dir/src/rdma_communication.cpp.o CMakeFiles/cxlmemsim_server_rdma.dir/qemu_integration/src/cxlmemsim_server_rdma.cpp.o -o cxlmemsim_server_rdma  -lrdmacm -libverbs -lpthread

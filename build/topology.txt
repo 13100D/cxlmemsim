@@ -1,0 +1,3 @@
+# Format: node_id read_bandwidth write_bandwidth read_latency write_latency capacity_mb
+1 4000 4000 85 85 256
+2 4000 4000 100 100 256

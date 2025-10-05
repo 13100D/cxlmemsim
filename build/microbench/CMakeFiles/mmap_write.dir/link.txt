@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/mmap_write.dir/link.d CMakeFiles/mmap_write.dir/mmap_write.c.o -o mmap_write

@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/cache-miss.dir/link.d "CMakeFiles/cache-miss.dir/cache-miss.c.o" -o cache-miss

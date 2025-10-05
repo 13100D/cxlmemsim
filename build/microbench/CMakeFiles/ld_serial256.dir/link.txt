@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ld_serial256.dir/link.d CMakeFiles/ld_serial256.dir/ld_serial.cpp.o -o ld_serial256

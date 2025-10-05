@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/arv/memu/CXLMemSim-memu/build/cmake_install.cmake",
+		"/home/arv/memu/CXLMemSim-memu/build/microbench/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

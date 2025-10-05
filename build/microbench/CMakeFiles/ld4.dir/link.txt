@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ld4.dir/link.d CMakeFiles/ld4.dir/ld.cpp.o -o ld4

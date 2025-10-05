@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/branch_simple.dir/link.d CMakeFiles/branch_simple.dir/branch_simple.c.o -o branch_simple

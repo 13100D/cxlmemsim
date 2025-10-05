@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/st_serial2.dir/link.d CMakeFiles/st_serial2.dir/st_serial.cpp.o -o st_serial2

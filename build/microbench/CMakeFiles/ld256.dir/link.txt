@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ld256.dir/link.d CMakeFiles/ld256.dir/ld.cpp.o -o ld256

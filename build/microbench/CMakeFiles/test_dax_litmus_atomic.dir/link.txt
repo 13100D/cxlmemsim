@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_dax_litmus_atomic.dir/link.d CMakeFiles/test_dax_litmus_atomic.dir/test_dax_litmus_atomic.c.o -o test_dax_litmus_atomic

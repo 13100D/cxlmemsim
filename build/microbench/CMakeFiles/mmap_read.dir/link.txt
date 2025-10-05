@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/mmap_read.dir/link.d CMakeFiles/mmap_read.dir/mmap_read.c.o -o mmap_read

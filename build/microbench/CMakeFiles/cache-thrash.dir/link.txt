@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/cache-thrash.dir/link.d "CMakeFiles/cache-thrash.dir/cache-thrash.c.o" -o cache-thrash

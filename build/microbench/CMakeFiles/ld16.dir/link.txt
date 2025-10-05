@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ld16.dir/link.d CMakeFiles/ld16.dir/ld.cpp.o -o ld16
