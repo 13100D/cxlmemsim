@@ -1,7 +1,7 @@
 # CXLMemSim and MEMU
 
 # CXLMemSim
-The CXL.mem simulator uses target latency for simulating CPU perspective, taking ROB and different cacheline states into account from the application level. It supports both standalone operation and client-server mode for flexible testing scenarios.
+The CXL.mem simulator provides a server-client architecture for simulating CXL Type 3 memory devices, with support for different memory management policies, workload replay, and performance analysis.
 
 ## Quick Start
 
@@ -12,22 +12,23 @@ cmake ..
 make -j$(nproc)
 ```
 
-### Running in Server Mode
+### Running the Server
 
-The server supports various configuration options:
+The CXL memory simulator server (`cxlmemsim_server`) supports the following options:
 
 ```bash
-./cxlmemsim_server [OPTIONS]
+Usage: cxlmemsim_server [OPTIONS]
 
 Options:
-  --default_latency N    Base memory access latency in ns (default: 100)
+  -h, --help            Show help message
+  -v, --verbose N       Verbose level (default: 2)
+  --default_latency N   Base memory access latency in ns (default: 100)
   --interleave_size N   Memory interleaving size in bytes (default: 256)
-  --capacity N          Total CXL memory capacity in MB (default: 256)
-  --port N             Server port number (default: 9999)
-  --topology FILE      Topology configuration file (default: topology.txt)
+  --capacity N          CXL expander capacity in MB (default: 256)
+  -p, --port N         Server port (default: 9999)
+  -t, --topology FILE  Topology configuration file (default: topology.txt)
+  --backing-file FILE  Optional backing file for shared memory
   --comm-mode MODE     Communication mode: tcp or shm (default: tcp)
-  -v, --verbose N      Verbosity level 0-3 (default: 2)
-  --backing-file FILE  Optional file to back CXL memory
 ```
 
 Example server setup:
@@ -40,46 +41,85 @@ cat > topology.txt << EOL
 EOL
 
 # Run server with configuration
-SPDLOG_LEVEL=debug ./cxlmemsim_server --default_latency 85 --interleave_size 256 --capacity 512 --port 9999 --topology topology.txt
+SPDLOG_LEVEL=debug ./cxlmemsim_server --default_latency 85 --interleave_size 256 \
+    --capacity 512 --port 9999 --topology topology.txt
 ```
 
-### Client Examples
+### Using the Simulator
 
-1. Simple Memory Test (C client):
+#### 1. Basic Memory Tests (C Client)
+The simple_client.c provides basic read/write testing:
 ```bash
 cd microbench
 gcc -o simple_client simple_client.c
-./simple_client  # Basic read/write tests
+./simple_client  # Performs basic read/write operations
 ```
 
-2. Python Trace Replay:
+#### 2. Microbenchmarks
+The `microbench/` directory contains various test programs:
+```bash
+cd build/microbench
+# Load Tests
+./ld_simple     # Simple memory load patterns
+./ld1 through ./ld256  # Different load sizes
+./ld_nt1 through ./ld_nt256  # Non-temporal loads
+./ld_serial1 through ./ld_serial256  # Serial loads
+
+# Store Tests
+./st1 through ./st256  # Different store sizes
+./st_serial1 through ./st_serial256  # Serial stores
+
+# Other Tests
+./ptr-chasing   # Memory latency measurement
+./bw            # Memory bandwidth test
+./cache-miss    # Cache miss behavior
+./thread        # Multi-threaded access patterns
+```
+
+#### 3. Workload Replay
+The project includes several pre-recorded workloads in `artifact/`:
+
+1. LLaMA Inference Traces (`artifact/llama/llama-cli/`):
+```bash
+# Different policy configurations:
+cxlmemsim.txt                           # Base configuration
+cxlmemsim_none_frequency_none_none.txt  # Frequency-based policy
+cxlmemsim_none_locality_none_none.txt   # Locality-based policy
+cxlmemsim_none_loadbalance_none_none.txt # Load balancing policy
+```
+
+2. GROMACS Molecular Dynamics:
+```bash
+cd artifact
+./run_gromacs.sh  # Runs molecular dynamics simulation
+```
+
+3. Memory Latency Calibration (MLC):
+```bash
+cd artifact/mlc
+# Provides latency measurements for:
+mlc-alderlake.txt
+mlc-lunarlake.txt
+mlc-sapphirerapids.txt
+```
+
+#### 4. Trace Replay Tool
+The Python trace replay tool can be used to replay any memory access trace:
 ```bash
 cd microbench
+./inference_replay.py <trace_file>
+
+# Example with LLaMA trace:
 ./inference_replay.py ../artifact/llama/llama-cli/cxlmemsim.txt
 ```
 
-3. Available Microbenchmarks:
-- `ld_simple.cpp`: Memory load testing
-- `bw.cpp`: Bandwidth measurement
-- `ptr-chasing.cpp`: Latency measurement
-- `st.cpp`: Store operation testing
-
-### Inference and Workload Replay
-
-The project includes several pre-configured workloads and traces:
-
-1. Available Workloads (`workloads/`):
-   - LLaMA Inference (`llama.cpp/`)
-   - Memory Bandwidth (`MLC/`)
-   - Graph Processing (`gapbs/`)
-   - Molecular Dynamics (`gromacs/`)
-
-2. Pre-recorded Traces (`artifact/llama/llama-cli/`):
-   - Base configuration: `cxlmemsim.txt`
-   - Policy variations:
-     - Frequency-based: `cxlmemsim_none_frequency_none_none.txt`
-     - Locality-based: `cxlmemsim_none_locality_none_none.txt`
-     - Load balancing: `cxlmemsim_none_loadbalance_none_none.txt`
+Trace file format:
+```
+# timestamp addr size op_type
+# op_type: 0=read, 1=write
+1234567890 0x1000 64 0  # Example read operation
+1234567891 0x2000 64 1  # Example write operation
+```
 
 ### Running in Standalone Mode
 For standalone operation, use the following command format:
